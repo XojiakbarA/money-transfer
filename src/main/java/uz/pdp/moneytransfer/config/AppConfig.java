@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
+import uz.pdp.moneytransfer.Users;
 
 @Configuration
 public class AppConfig {
@@ -24,11 +25,13 @@ public class AppConfig {
     @Bean
     public UserDetailsService userDetailsService() {
         return username -> {
-            if (username.equals("user1") || username.equals("user2") || username.equals("user3")) {
-                return User.builder()
-                        .username(username)
-                        .password(passwordEncoder().encode("123"))
-                        .build();
+            for (Users value : Users.values()) {
+                if (username.equals(value.getUsername())) {
+                    return User.builder()
+                            .username(username)
+                            .password(passwordEncoder().encode("123"))
+                            .build();
+                }
             }
             throw new UsernameNotFoundException("User not found");
         };

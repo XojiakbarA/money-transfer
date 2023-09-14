@@ -1,16 +1,16 @@
-package uz.pdp.moneytransfer.dto;
+package uz.pdp.moneytransfer.request;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
-public class LoginDTO {
+public class LoginRequest {
     @NotNull(message = "username must not be null")
     @NotBlank(message = "username must not be empty")
     private String username;
 
-    @NotNull(message = "username must not be null")
-    @NotBlank(message = "username must not be empty")
+    @NotNull(message = "password must not be null")
+    @NotBlank(message = "password must not be empty")
     private String password;
 }

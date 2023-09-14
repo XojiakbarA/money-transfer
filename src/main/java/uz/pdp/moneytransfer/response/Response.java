@@ -1,4 +1,4 @@
-package uz.pdp.moneytransfer.payload;
+package uz.pdp.moneytransfer.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

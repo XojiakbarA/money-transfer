@@ -1,9 +1,8 @@
-package uz.pdp.moneytransfer.payload;
+package uz.pdp.moneytransfer.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import java.util.HashMap;
 import java.util.Map;
 
 @AllArgsConstructor

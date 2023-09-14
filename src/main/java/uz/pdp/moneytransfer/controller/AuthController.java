@@ -11,8 +11,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
-import uz.pdp.moneytransfer.payload.AuthResponse;
-import uz.pdp.moneytransfer.dto.LoginDTO;
+import uz.pdp.moneytransfer.response.AuthResponse;
+import uz.pdp.moneytransfer.request.LoginRequest;
 import uz.pdp.moneytransfer.security.JWTProvider;
 
 @RestController
@@ -26,12 +26,12 @@ public class AuthController {
     private UserDetailsService userDetailsService;
 
     @PostMapping("/login")
-    public ResponseEntity<AuthResponse> login(@Valid @RequestBody LoginDTO dto) {
+    public ResponseEntity<AuthResponse> login(@Valid @RequestBody LoginRequest request) {
         Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(dto.getUsername(), dto.getPassword())
+                new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword())
         );
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        UserDetails userDetails = userDetailsService.loadUserByUsername(dto.getUsername());
+        UserDetails userDetails = userDetailsService.loadUserByUsername(request.getUsername());
 
         String token = jwtProvider.generateToken(userDetails);
 

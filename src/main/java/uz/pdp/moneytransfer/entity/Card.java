@@ -12,18 +12,18 @@ public class Card {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String username;
 
     @Column(nullable = false, unique = true)
     private Long number;
 
     @Column(nullable = false)
-    private Float balance;
+    private Float balance = 0F;
 
     @Column(nullable = false)
-    private Date expireDate;
+    private Date expireDate = new Date(System.currentTimeMillis() + (long) 1000 * 60 * 60 * 24 * 365 * 4);
 
     @Column(nullable = false)
-    private Boolean active = true;
+    private Boolean active = false;
 }
