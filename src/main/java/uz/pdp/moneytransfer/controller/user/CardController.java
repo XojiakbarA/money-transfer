@@ -39,7 +39,7 @@ public class CardController {
     public ResponseEntity<Response> activate(@PathVariable Long id, Authentication authentication) {
         cardService.activateByIdAndUsername(id, authentication.getName());
 
-        Response response = new Response(HttpStatus.ACCEPTED.name(), null);
+        Response response = new Response(HttpStatus.ACCEPTED.name());
 
         return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
     }
@@ -48,7 +48,7 @@ public class CardController {
     public ResponseEntity<Response> deactivate(@PathVariable Long id, Authentication authentication) {
         cardService.deactivateByIdAndUsername(id, authentication.getName());
 
-        Response response = new Response(HttpStatus.ACCEPTED.name(), null);
+        Response response = new Response(HttpStatus.ACCEPTED.name());
 
         return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
     }

@@ -3,6 +3,7 @@ package uz.pdp.moneytransfer.handler;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.ConstraintViolationException;
+import org.hibernate.action.internal.EntityActionVetoException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -35,6 +36,12 @@ public class AppExceptionHandler {
 
     @ExceptionHandler(EntityExistsException.class)
     public ResponseEntity<ErrorResponse> handleEntityExists(EntityExistsException e) {
+        ErrorResponse response = new ErrorResponse(e.getMessage(), new HashMap<>());
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(EntityActionVetoException.class)
+    public ResponseEntity<ErrorResponse> handleEntityActionVeto(EntityActionVetoException e) {
         ErrorResponse response = new ErrorResponse(e.getMessage(), new HashMap<>());
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }

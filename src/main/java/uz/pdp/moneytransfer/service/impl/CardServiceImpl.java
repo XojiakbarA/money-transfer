@@ -42,7 +42,7 @@ public class CardServiceImpl implements CardService {
 
     @Override
     public CardDTO getByIdAndUsername(Long id, String username) {
-        return cardMapper.map(findByIdAndUsername(id, username););
+        return cardMapper.map(findByIdAndUsername(id, username));
     }
 
     @Override

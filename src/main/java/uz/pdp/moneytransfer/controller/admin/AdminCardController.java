@@ -17,7 +17,7 @@ import uz.pdp.moneytransfer.service.CardService;
 @Validated
 @RestController
 @RequestMapping("/cards")
-public class CardController {
+public class AdminCardController {
     @Autowired
     private CardService cardService;
 
@@ -62,7 +62,7 @@ public class CardController {
     public ResponseEntity<Response> activate(@PathVariable Long id) {
         cardService.activate(id);
 
-        Response response = new Response(HttpStatus.ACCEPTED.name(), null);
+        Response response = new Response(HttpStatus.ACCEPTED.name());
 
         return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
     }
@@ -71,7 +71,7 @@ public class CardController {
     public ResponseEntity<Response> deactivate(@PathVariable Long id) {
         cardService.deactivate(id);
 
-        Response response = new Response(HttpStatus.ACCEPTED.name(), null);
+        Response response = new Response(HttpStatus.ACCEPTED.name());
 
         return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
     }
@@ -80,7 +80,7 @@ public class CardController {
     public ResponseEntity<Response> delete(@PathVariable Long id) {
         cardService.deleteById(id);
 
-        Response response = new Response(HttpStatus.ACCEPTED.name(), null);
+        Response response = new Response(HttpStatus.ACCEPTED.name());
 
         return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
     }
