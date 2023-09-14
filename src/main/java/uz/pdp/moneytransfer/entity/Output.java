@@ -22,7 +22,7 @@ public class Output {
     private Float amount;
 
     @Column(nullable = false)
-    private Date date;
+    private Date date = new Date();
 
     @Column(nullable = false)
     private Float commissionAmount;

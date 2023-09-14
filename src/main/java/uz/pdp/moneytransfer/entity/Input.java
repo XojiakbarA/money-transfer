@@ -22,5 +22,5 @@ public class Input {
     private Float amount;
 
     @Column(nullable = false)
-    private Date date;
+    private Date date = new Date();
 }

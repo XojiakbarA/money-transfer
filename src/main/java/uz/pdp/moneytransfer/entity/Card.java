@@ -25,5 +25,5 @@ public class Card {
     private Date expireDate = new Date(System.currentTimeMillis() + (long) 1000 * 60 * 60 * 24 * 365 * 4);
 
     @Column(nullable = false)
-    private Boolean active = false;
+    private Boolean active = true;
 }
