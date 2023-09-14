@@ -16,7 +16,7 @@ import uz.pdp.moneytransfer.service.CardService;
 
 @Validated
 @RestController("adminCardController")
-@RequestMapping("/cards")
+@RequestMapping("/admin/cards")
 public class CardController {
     @Autowired
     private CardService cardService;
