@@ -13,7 +13,7 @@ import uz.pdp.moneytransfer.service.InputService;
 
 import java.util.List;
 
-@RestController
+@RestController("userInputController")
 @RequestMapping("/my/inputs")
 public class InputController {
     @Autowired

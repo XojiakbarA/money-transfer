@@ -13,7 +13,7 @@ import uz.pdp.moneytransfer.service.OutputService;
 
 import java.util.List;
 
-@RestController
+@RestController("userOutputController")
 @RequestMapping("/my/outputs")
 public class OutputController {
     @Autowired

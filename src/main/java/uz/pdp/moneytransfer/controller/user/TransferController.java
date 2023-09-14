@@ -13,7 +13,7 @@ import uz.pdp.moneytransfer.request.TransferRequest;
 import uz.pdp.moneytransfer.response.Response;
 import uz.pdp.moneytransfer.service.TransferService;
 
-@RestController
+@RestController("userTransferController")
 @RequestMapping("/transfers")
 public class TransferController {
     @Autowired

@@ -11,7 +11,7 @@ import uz.pdp.moneytransfer.service.CardService;
 
 import java.util.List;
 
-@RestController
+@RestController("userCardController")
 @RequestMapping("/my/cards")
 public class CardController {
     @Autowired
