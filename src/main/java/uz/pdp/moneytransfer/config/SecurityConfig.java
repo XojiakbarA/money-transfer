@@ -12,6 +12,8 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import uz.pdp.moneytransfer.Roles;
 import uz.pdp.moneytransfer.security.JWTFilter;
 
 @Configuration
@@ -33,6 +35,7 @@ public class SecurityConfig {
                 .formLogin(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/login").permitAll()
+                        .requestMatchers("/admin/**").hasAuthority(Roles.ADMIN.name())
                         .anyRequest().authenticated()
                 )
                 .authenticationProvider(authenticationProvider)

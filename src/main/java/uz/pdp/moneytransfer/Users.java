@@ -4,7 +4,7 @@ import lombok.Getter;
 
 @Getter
 public enum Users {
-    USER1("user1"), USER2("user2"), USER3("user3");
+    USER1("user1"), USER2("user2"), USER3("user3"), ADMIN("admin");
 
     Users(String username) {
         this.username = username;

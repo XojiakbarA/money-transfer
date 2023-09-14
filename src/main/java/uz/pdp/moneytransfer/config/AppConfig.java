@@ -10,9 +10,12 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.core.userdetails.User.UserBuilder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
+
+import uz.pdp.moneytransfer.Roles;
 import uz.pdp.moneytransfer.Users;
 
 @Configuration
@@ -25,13 +28,14 @@ public class AppConfig {
     @Bean
     public UserDetailsService userDetailsService() {
         return username -> {
+            UserBuilder userBuilder = User.builder().username(username).password(passwordEncoder().encode("123"));
+            if (username.equals(Users.ADMIN.getUsername())) {
+                return userBuilder.authorities(Roles.ADMIN.name()).build();
+            }
             for (Users value : Users.values()) {
                 if (username.equals(value.getUsername())) {
-                    return User.builder()
-                            .username(username)
-                            .password(passwordEncoder().encode("123"))
-                            .build();
-                }
+                    return userBuilder.authorities(Roles.USER.name()).build();
+                } 
             }
             throw new UsernameNotFoundException("User not found");
         };

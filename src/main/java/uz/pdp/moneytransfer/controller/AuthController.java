@@ -1,6 +1,9 @@
 package uz.pdp.moneytransfer.controller;
 
 import jakarta.validation.Valid;
+
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +36,7 @@ public class AuthController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         UserDetails userDetails = userDetailsService.loadUserByUsername(request.getUsername());
 
-        String token = jwtProvider.generateToken(userDetails);
+        String token = jwtProvider.generateToken(Map.of("roles", userDetails.getAuthorities()), userDetails);
 
         AuthResponse response = new AuthResponse(token);
 
